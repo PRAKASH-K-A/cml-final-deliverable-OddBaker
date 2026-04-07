@@ -1,0 +1,27 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: g1-m5-order-event-service
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+app:
+  events:
+    broker:
+      enabled: false
+    websocket:
+      endpoint: /ws/orders
+      application-destination-prefix: /app
+      broker-destination-prefix: /topic
+    buffer:
+      capacity: 5000
+      policy: DROP_OLDEST
+
+logging:
+  level:
+    com.trading.g1m5: INFO
